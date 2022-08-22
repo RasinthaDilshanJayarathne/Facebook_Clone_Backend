@@ -14,7 +14,7 @@ const usersSchema = new mongoose.Schema({
         required:true
     },
     dateOfBirthDay:{
-        type:Number,
+        type:String,
         required:true
     },
     password:{
@@ -22,7 +22,7 @@ const usersSchema = new mongoose.Schema({
         required:true
     },
     phoneNumber:{
-        type:Number,
+        type:String,
         required:true
     },
     email:{
