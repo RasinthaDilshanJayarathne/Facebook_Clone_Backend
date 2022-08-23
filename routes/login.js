@@ -6,6 +6,24 @@ const Login = require('../models/login.models')
 
 app.use(express.json())
 
+router.post('/', async(req, res) =>{
+    const login = new Login({
+        email: req.body.email,
+        password: req.body.password
+    })
+    try{
+        if(login.email !=  && login.password != ){
+            const response = await login.save()
+            res.send('Login Succesfully')
+        }else{
+            res.send('Wrong Username or Password')
+        }
+           
+    }catch(err){
+        res.send(err)
+    }
+})
+
 router.get('/',async(req, res) =>{
     try{
         const login = await Login.find()
