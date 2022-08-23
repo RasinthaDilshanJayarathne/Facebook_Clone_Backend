@@ -12,13 +12,7 @@ router.post('/', async(req, res) =>{
         password: req.body.password
     })
     try{
-        if(login.email !=  && login.password != ){
-            const response = await login.save()
-            res.send('Login Succesfully')
-        }else{
-            res.send('Wrong Username or Password')
-        }
-           
+       
     }catch(err){
         res.send(err)
     }
