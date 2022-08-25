@@ -14,10 +14,11 @@ router.post('/', async (req, res) => {
     
         for (const i of login) {
             if (email == i.email && password === i.password) {
-                res.json(i);
+                //res.json(i);
+                res.send("Login Successfully.....!");
     
             } else {
-                res.send("Incorrect Email OR password.....!");
+                res.send("Wrong Email OR password.....!");
             }
         }
     }catch(err){
