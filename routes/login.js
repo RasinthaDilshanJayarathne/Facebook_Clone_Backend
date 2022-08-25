@@ -6,33 +6,19 @@ const Login = require('../models/login.models')
 
 app.use(express.json())
 
-router.post('/', async(req, res) =>{
-    const login = new Login({
-        email: req.body.email,
-        password: req.body.password
-    })
-    try{
-       
-    }catch(err){
-        res.send(err)
-    }
-})
+router.post('/', async (req, res) => {
 
-router.get('/',async(req, res) =>{
-    try{
-        const login = await Login.find()
-        res.json(login)
-    }catch(err){
-        res.send('Err' + err)
-    }
-})
+    const email = req.body.email;
+    const password = req.body.password;
+    const login = await Login.find();
 
-router.get('/:id', async(req, res) =>{
-    try{
-        const login = await Login.findById(req.params.id)
-        res.json(login)
-    }catch(err){
-        res.send(err)
+    for (const i of login) {
+        if (email == i.email && password === i.password) {
+            res.json(i);
+
+        } else {
+            res.send("Incorrect Email OR password.....!");
+        }
     }
 })
 
