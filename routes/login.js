@@ -7,19 +7,23 @@ const Login = require('../models/login.models')
 app.use(express.json())
 
 router.post('/', async (req, res) => {
-
-    const email = req.body.email;
-    const password = req.body.password;
-    const login = await Login.find();
-
-    for (const i of login) {
-        if (email == i.email && password === i.password) {
-            res.json(i);
-
-        } else {
-            res.send("Incorrect Email OR password.....!");
+    try{
+        const email = req.body.email;
+        const password = req.body.password;
+        const login = await Login.find();
+    
+        for (const i of login) {
+            if (email == i.email && password === i.password) {
+                res.json(i);
+    
+            } else {
+                res.send("Incorrect Email OR password.....!");
+            }
         }
+    }catch(err){
+        res.send(err)
     }
+    
 })
 
 module.exports = router
