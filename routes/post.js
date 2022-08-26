@@ -3,11 +3,11 @@ const app = express()
 const router = express.Router()
 var bodyParser = require('body-parser')
 
-
-
 const Post = require('../models/post.models')
 
-app.use(express.json())
+//app.use(express.json())
+//app.use(express.urlencoded())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 router.get('/', async (req, res) => {
     try {
@@ -18,23 +18,9 @@ router.get('/', async (req, res) => {
     }
 })
 
-app.use(bodyParser.urlencoded({ extended: true }))
-
-router.post('/', function (req, res){
-
-    const post = new Post({
-        userId: req.userId,
-        date: req.body.date,
-        time: req.body.time,
-        title: req.body.title,
-        body: req.body.body
-    })
-    const response = post.save()
-    console.log(req.body);
-    console.log(post.toJSON);
-    // res.json(response)
-    res.send('Successfully')
-})
+router.post('/',(req, res) => {
+    console.log(req.query.userId);
+});
 
 // router.post('/', async (req, res) => {
 //     const post = new Post({
